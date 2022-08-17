@@ -39,7 +39,7 @@ let question = rl.on('line', (input) => {
 
         writeStream.write(`,`)
         
-        question
+        question()
     } else {
         rl.close()
         writeStream.write(']}', 'utf-8')
