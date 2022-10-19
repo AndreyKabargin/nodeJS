@@ -1,0 +1,215 @@
+Задание 1 - Docker CLI
+1. Загрузите образ busybox последней версии
+PS C:\Users\Ak\Documents\GitHub\ak> docker pull busybox 
+Using default tag: latest
+latest: Pulling from library/busybox
+Digest: sha256:9810966b5f712084ea05bf28fc8ba2c8fb110baa2531a10e2da52c1efc504698
+Status: Image is up to date for busybox:latest
+docker.io/library/busybox:latest
+
+2. Запустите новый контейнер busybox с командой ping сайта netology.ru, и количеством пингов 7, поименуйте контейнер pinger
+PS C:\Users\Ak\Documents\GitHub\ak> docker run busybox ping -c 7 netology.ru
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=10.343 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=10.901 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=10.975 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=11.704 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=10.628 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=10.697 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=14.951 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.343/11.457/14.951 ms
+
+PS C:\Users\Ak\Documents\GitHub\ak> docker rename eager_tharp pinger
+
+3. Выведите на список всех контейнеров - запущенных и остановленных
+PS C:\Users\Ak\Documents\GitHub\ak> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS     NAMES
+89071d0e8260   busybox   "ping -c 7 netology.…"   56 minutes ago   Exited (0) 5 minutes ago             pinger
+
+4. Выведите на экран логи контейнера с именем pinger
+PS C:\Users\Ak\Documents\GitHub\ak> docker logs pinger
+PING netology.ru (188.114.98.229): 56 data bytes
+64 bytes from 188.114.98.229: seq=0 ttl=37 time=10.795 ms
+64 bytes from 188.114.98.229: seq=1 ttl=37 time=14.069 ms
+64 bytes from 188.114.98.229: seq=2 ttl=37 time=11.172 ms
+64 bytes from 188.114.98.229: seq=3 ttl=37 time=14.156 ms
+64 bytes from 188.114.98.229: seq=4 ttl=37 time=11.109 ms
+64 bytes from 188.114.98.229: seq=5 ttl=37 time=14.294 ms
+64 bytes from 188.114.98.229: seq=6 ttl=37 time=11.358 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.795/12.421/14.294 ms
+PING netology.ru (188.114.98.229): 56 data bytes
+64 bytes from 188.114.98.229: seq=0 ttl=37 time=10.742 ms
+64 bytes from 188.114.98.229: seq=1 ttl=37 time=11.237 ms
+64 bytes from 188.114.98.229: seq=2 ttl=37 time=13.230 ms
+64 bytes from 188.114.98.229: seq=3 ttl=37 time=13.959 ms
+64 bytes from 188.114.98.229: seq=4 ttl=37 time=13.964 ms
+64 bytes from 188.114.98.229: seq=5 ttl=37 time=13.766 ms
+64 bytes from 188.114.98.229: seq=6 ttl=37 time=10.924 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.742/12.546/13.964 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=11.644 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=14.904 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=11.210 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=12.642 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.795 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=12.889 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=10.741 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.741/12.260/14.904 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=50.736 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=12.137 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=11.397 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=11.146 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=13.132 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=11.059 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=11.169 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 11.059/17.253/50.736 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=10.321 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=15.492 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=12.152 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=12.747 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.706 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=13.275 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=15.001 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.321/12.956/15.492 ms
+
+5. Запустите второй раз контейнера с именем pinger
+PS C:\Users\Ak\Documents\GitHub\ak> docker start -ai pinger
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=10.675 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=12.602 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=12.292 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=11.497 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.422 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=14.605 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=10.991 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.675/12.012/14.605 ms
+
+6. Выведите на список всех контейнеров - запущенных и остановленных
+PS C:\Users\Ak\Documents\GitHub\ak> docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED             STATUS                          PORTS     NAMES
+89071d0e8260   busybox   "ping -c 7 netology.…"   About an hour ago   Exited (0) About a minute ago             pinger
+PS C:\Users\Ak\Documents\GitHub\ak> 
+
+7. Выведите на экран логи контейнера с именем pinger
+PS C:\Users\Ak\Documents\GitHub\ak> docker logs pinger
+PING netology.ru (188.114.98.229): 56 data bytes
+64 bytes from 188.114.98.229: seq=0 ttl=37 time=10.795 ms
+64 bytes from 188.114.98.229: seq=1 ttl=37 time=14.069 ms
+64 bytes from 188.114.98.229: seq=2 ttl=37 time=11.172 ms
+64 bytes from 188.114.98.229: seq=3 ttl=37 time=14.156 ms
+64 bytes from 188.114.98.229: seq=4 ttl=37 time=11.109 ms
+64 bytes from 188.114.98.229: seq=5 ttl=37 time=14.294 ms
+64 bytes from 188.114.98.229: seq=6 ttl=37 time=11.358 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.795/12.421/14.294 ms
+PING netology.ru (188.114.98.229): 56 data bytes
+64 bytes from 188.114.98.229: seq=0 ttl=37 time=10.742 ms
+64 bytes from 188.114.98.229: seq=1 ttl=37 time=11.237 ms
+64 bytes from 188.114.98.229: seq=2 ttl=37 time=13.230 ms
+64 bytes from 188.114.98.229: seq=3 ttl=37 time=13.959 ms
+64 bytes from 188.114.98.229: seq=4 ttl=37 time=13.964 ms
+64 bytes from 188.114.98.229: seq=5 ttl=37 time=13.766 ms
+64 bytes from 188.114.98.229: seq=6 ttl=37 time=10.924 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.742/12.546/13.964 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=11.644 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=14.904 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=11.210 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=12.642 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.795 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=12.889 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=10.741 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.741/12.260/14.904 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=50.736 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=12.137 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=11.397 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=11.146 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=13.132 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=11.059 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=11.169 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 11.059/17.253/50.736 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=10.321 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=15.492 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=12.152 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=12.747 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.706 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=13.275 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=15.001 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.321/12.956/15.492 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=10.675 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=12.602 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=12.292 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=11.497 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=11.422 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=14.605 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=10.991 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.675/12.012/14.605 ms
+PING netology.ru (188.114.99.229): 56 data bytes
+64 bytes from 188.114.99.229: seq=0 ttl=37 time=11.042 ms
+64 bytes from 188.114.99.229: seq=1 ttl=37 time=11.354 ms
+64 bytes from 188.114.99.229: seq=2 ttl=37 time=18.106 ms
+64 bytes from 188.114.99.229: seq=3 ttl=37 time=14.623 ms
+64 bytes from 188.114.99.229: seq=4 ttl=37 time=10.570 ms
+64 bytes from 188.114.99.229: seq=5 ttl=37 time=11.342 ms
+64 bytes from 188.114.99.229: seq=6 ttl=37 time=10.764 ms
+
+--- netology.ru ping statistics ---
+7 packets transmitted, 7 packets received, 0% packet loss
+round-trip min/avg/max = 10.570/12.543/18.106 ms
+
+8. Определите по логам общее количество запусков команды ping и какое общее количество отправленых запросов
+49
+
+9. Удалите контейнер с именем pinger
+PS C:\Users\Ak\Documents\GitHub\ak> docker rm pinger
+pinger
+
+10. Удалите образ busybox
+PS C:\Users\Ak\Documents\GitHub\ak> docker rmi busybox
+Untagged: busybox:latest
+Untagged: busybox@sha256:9810966b5f712084ea05bf28fc8ba2c8fb110baa2531a10e2da52c1efc504698
+Deleted: sha256:ff4a8eb070e12018233797e865841d877a7835c4c6d5cfc52e5481995da6b2f7
+Deleted: sha256:0b16ab2571f4b3e0d5a96b66a00e5016ddc0d268e8bc45dc612948c4c95b94cd
