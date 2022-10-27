@@ -1,0 +1,37 @@
+<%- include('../port/layout-start', {title: title}) %>
+<%- include('../port/menu') %>
+
+    <h1>
+        <%= title %>
+    </h1>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card">
+                <div class="card-body">
+
+                <h5 class="card-title">
+                    <%= book.title %>
+                </h5>
+                <p class="card-text">
+                    <%= book.description %>
+                </p>
+                <p class="card-text">
+                    <%= book.fileBook %> 
+                </p>
+                <p class="card-title">
+                    <%= count %>
+                </p>
+
+ 
+                <a class="form-group text-right " href="/books">
+                    <button type="submit" class="btn btn-primary">Назад</button>
+                </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+<%- include('../port/layout-end') %>
