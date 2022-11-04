@@ -1,3 +1,5 @@
+const request = require('request');
+
 //++
 const multer = require('multer')
 
@@ -16,21 +18,6 @@ const upload = multer({ storage: storage })
 
 //++
 const { v4: uuidv4 } = require('uuid')
-
-//++
-//const redis = require('redis')
-
-const REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379' 
-const redis = require('redis');
-
-const client = redis.createClient({ url : REDIS_URL });
-//const client = redis.createClient();
-
-async function connectRedis()  {
-    await client.connect()
-}
-connectRedis()
-
 
 //++
 const express = require('express')
@@ -137,27 +124,36 @@ router.post('/update/:id', (req, res) => {
 
 })
 
-router.get('/view/:id', async (req, res) => {
+router.get('/view/:id', (req, res) => {
 
     const {books} = library
     const {id} = req.params
     const idx = books.findIndex(el => el.id === id)
 
     if(idx !== -1){
-        //++redis
-        let incr = 0
-        try {
-            incr = await client.incr(id)
-        }
-        catch(error) {
-            console.log(error)
-        }
-        //--
-        res.render('library/view', {
-            title: 'Информация',
-            book: books[idx],
-            count: incr
-        })
+
+        const MICRO_URL = process.env.MICRO_URL||'http://localhost:3001'
+
+         request.post(MICRO_URL + ':3001/counter/' + id + '/incr', (error, response, body) => {
+            try {
+                const {count} = JSON.parse(body)
+                       
+                res.render('library/view', {
+                    title: 'Информация',
+                    book: books[idx],
+                    count: count
+                })
+            }
+            catch {
+                console.log(`Microservice error - ${error}`)
+                
+                res.render('library/view', {
+                    title: 'Информация',
+                    book: books[idx],
+                    count: 0
+                })
+            }
+        });
     } 
 
 })
